@@ -5,7 +5,7 @@ status: active
 created: 2026-11-21
 updated: 2026-11-21
 tags: [company, jurisdiction, california, philippines]
-related: []
+related: [2026-11-21-website-audience-california-law-firms, website-completion]
 ---
 
 # Salig Legal company overview
@@ -18,6 +18,11 @@ The single place for basic facts about the firm. Every agent reads this before s
 - Practice areas: _not yet recorded_
 - Sister company: a sister company in the Philippines employs the firm's legal assistant workforce.
 - What we are building: a website and internal tools to help the organisation (confirmed by Aldred, 2026-11-21). Building has not started; see CLAUDE.md section 0.
+
+## The website
+- Audience: California lawyers and law firms that need legal assistants (confirmed by Aldred, 2026-11-21; see [[2026-11-21-website-audience-california-law-firms]]). The site markets the outsourced legal-assistant services. It does not offer legal services to the public.
+- Project: `brain/10-projects/website-completion/` ([[website-completion]]).
+- Not yet confirmed: Aldred's existing site sample brands the business as "Salig Legal Operations", described as "a Philippine corporation and a U.S. LLC" providing remote administrative and attorney-directed casework support to law firms. Treat that as the sample's wording until Aldred confirms the name and entities (open question 4).
 
 ## Jurisdiction
 
@@ -36,6 +41,7 @@ Legal research, website content and compliance reviews apply California law and 
 1. Will the product support any jurisdictions beyond California? If so, which ones, and when? (Undecided.)
 2. Should the Philippines be a supported product jurisdiction in any way (for example, internal tools used by the Philippine workforce, or Philippine law content), or only the place where staff are located? (Undecided.)
 3. What are the firm's practice areas, and is there anything else about the firm's services that the website should cover?
+4. What brand name and legal entities should the website show ("Salig Legal Operations", a Philippine corporation and a U.S. LLC, per the sample), and how do they relate to the Salig Legal law firm? (Undecided; see the proposed brand-name decision.)
 
 ## Links
 - Decision log: `brain/20-areas/decisions/README.md`
