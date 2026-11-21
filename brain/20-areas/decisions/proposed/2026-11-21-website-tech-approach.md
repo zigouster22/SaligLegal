@@ -22,7 +22,7 @@ Today the site is one hand-written HTML page with inline CSS and JS and no build
 3. A CMS or site builder (for example WordPress or Webflow). Non-developers can edit, but adds hosting cost, plugins to maintain, and makes it harder to keep the current accessibility work.
 
 ## Recommendation
-Option 2 with Astro (current major version 5). Astro outputs plain static HTML by default, supports shared layouts and components, and has no client-side JavaScript unless a page asks for it. It keeps the existing design and accessibility work while removing duplication.
+Option 2 with Astro (the stable 5.x line). Astro outputs plain static HTML by default, supports shared layouts and components, and has no client-side JavaScript unless a page asks for it. It keeps the existing design and accessibility work while removing duplication.
 
 ## Needed from Aldred
 Approve option 2 with Astro, or choose another option.
