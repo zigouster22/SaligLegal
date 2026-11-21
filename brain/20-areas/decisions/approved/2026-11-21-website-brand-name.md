@@ -1,12 +1,12 @@
 ---
 title: Brand name and legal entities shown on the website
 type: decision
-status: proposed
+status: approved
 proposed_by: Claude
 proposed_on: 2026-11-21
-approved_by:
-approved_on:
-approval_record:
+approved_by: Aldred
+approved_on: 2026-11-21
+approval_record: Aldred chose "Yes, use all three" on a decision card in the website thread, 2026-11-21 01:36 UTC (https://claude.ai/code/project/chan_01HJshpb8VmLjSBQTmDSG9d3?thread=cmsg_01HJshpb8VmLjSBQTmDSG9d3WYVButHkLtvfab4FPxazDN)
 supersedes: []
 related: [website-completion, existing-site-review, overview]
 ---
@@ -28,4 +28,4 @@ Option 1, subject to a California lawyer confirming the name does not imply the 
 Which brand name the site uses, and the exact legal entity names (and states/countries of registration) to show.
 
 ## Outcome
-(Filled in only once Aldred decides.)
+Approved by Aldred on 2026-11-21: option 1, the site uses **Salig Legal Operations**. Still open: the exact legal entity names and registration details (Aldred to supply), and a California lawyer's confirmation that the name does not imply a law firm.

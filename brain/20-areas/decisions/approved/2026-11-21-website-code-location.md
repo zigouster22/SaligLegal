@@ -1,12 +1,12 @@
 ---
 title: Where the website code lives
 type: decision
-status: proposed
+status: approved
 proposed_by: Claude
 proposed_on: 2026-11-21
-approved_by:
-approved_on:
-approval_record:
+approved_by: Aldred
+approved_on: 2026-11-21
+approval_record: Aldred chose "Yes, use all three" on a decision card in the website thread, 2026-11-21 01:36 UTC (https://claude.ai/code/project/chan_01HJshpb8VmLjSBQTmDSG9d3?thread=cmsg_01HJshpb8VmLjSBQTmDSG9d3WYVButHkLtvfab4FPxazDN)
 supersedes: []
 related: [website-completion, existing-site-review]
 ---
@@ -28,4 +28,4 @@ Option 1. Copy only `dist/` (and the `qa/` audit scripts if wanted), not `tmp/`,
 Approve moving the website into the SaligLegal repo under `site/`, or pick another option. This is the start of building (CLAUDE.md section 0), so it waits until requirements are approved.
 
 ## Outcome
-(Filled in only once Aldred decides.)
+Approved by Aldred on 2026-11-21: option 1, the website lives in the SaligLegal repo under `site/`. The Documents folder copy stays untouched as the original.

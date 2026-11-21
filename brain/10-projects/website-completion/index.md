@@ -14,7 +14,7 @@ tags: [website]
 Turn Aldred's existing one-page sample into a complete, accessible, lawyer-reviewed website that markets outsourced legal-assistant services to California lawyers and law firms, with a working inquiry form. Due date not yet set.
 
 ## Status
-Phase 1 (requirements and decisions, no code) approved by Aldred on 2026-11-21 and in progress. Next: Aldred reviews [[requirements]] and the proposed decisions below.
+Phase 1 approved and done on 2026-11-21. Aldred then approved building: the site is being built in `site/` (Astro). Next: content research and lawyer review (phase 2), hosting decision, and the facts listed at the end of this note.
 
 Plan, each phase ending at Aldred's approval:
 1. Confirm business and scope: requirements and decisions (no code). In progress.
@@ -32,9 +32,9 @@ Plan doc: https://claude.ai/artifact/42AUepyYnKQw32SmxdWR6z
 ## Decisions
 - 2026-11-21: approved, start building (on a branch; no publishing without sign-off): [[2026-11-21-start-building-website]]
 - 2026-11-21: approved, audience is California lawyers and law firms that need legal assistants: [[2026-11-21-website-audience-california-law-firms]]
-- Proposed, awaiting Aldred: [[2026-11-21-website-brand-name]]
-- Proposed, awaiting Aldred: [[2026-11-21-website-code-location]]
-- Proposed, awaiting Aldred: [[2026-11-21-website-tech-approach]]
+- 2026-11-21: approved, brand name Salig Legal Operations (entity names still open): [[2026-11-21-website-brand-name]]
+- 2026-11-21: approved, code lives in the SaligLegal repo under site/: [[2026-11-21-website-code-location]]
+- 2026-11-21: approved, Astro static site: [[2026-11-21-website-tech-approach]]
 - Proposed, no recommendation yet: [[2026-11-21-website-hosting-and-forms]]
 
 ## Facts still needed from Aldred
