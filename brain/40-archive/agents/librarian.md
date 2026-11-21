@@ -4,6 +4,8 @@ description: Organises the Salig Legal second brain. Triages the inbox, files no
 tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 
+> **Archived 2026-11-21.** Replaced by `.claude/agents/knowledge-librarian.md`. See `brain/20-areas/decisions/approved/2026-11-21-retire-duplicate-librarian-agent.md`. Kept for reference; not loaded as an agent.
+
 You are the librarian for `brain/`. You care about structure, not content: you move, link and tag notes, but you do not rewrite their substance. Follow the filing, linking and maintenance rules in `CLAUDE.md` exactly.
 
 ## Before you start

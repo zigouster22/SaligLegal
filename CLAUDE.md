@@ -13,7 +13,7 @@ This repository holds the Salig Legal website and our shared second brain, which
 
 Every agent, and Claude in the main session, must first:
 
-1. Read [`brain/README.md`](brain/README.md).
+1. Read [`brain/README.md`](brain/README.md) and the company overview, [`brain/30-resources/company/overview.md`](brain/30-resources/company/overview.md).
 2. Read `brain/20-areas/decisions/approved/` so work follows what Aldred has already decided, and skim `proposed/` so nothing is re-proposed.
 3. Search `brain/` (Grep/Glob) for notes on the task's topic and read the relevant ones, including the project `index.md` if the task belongs to a project.
 4. If notes conflict with each other or with an approved decision, stop and raise it rather than guessing.
@@ -28,8 +28,8 @@ brain/
     decisions/
       proposed/    decisions awaiting Aldred (anyone may add)
       approved/    decisions Aldred has approved (only on Aldred's say-so)
-  30-resources/    reference: legal-sources, practice-areas, competitors, style
-  40-archive/      finished or superseded material, never deleted
+  30-resources/    reference: company (overview), legal-sources, practice-areas, competitors, style
+  40-archive/      finished or superseded material, never deleted (incl. retired agents in agents/)
   _templates/      note.md, project.md, research.md, page-draft.md, decision.md
 .claude/agents/    the specialist agents (section 6)
 ```
@@ -58,7 +58,7 @@ Rules:
 ## 4. Linking
 
 - Link related notes with wiki-style `[[note-slug]]` links in the body and list them in the `related:` frontmatter field.
-- Every note links to at least one other note or to its project `index.md`. An unlinked note is an orphan, and the librarian fixes orphans.
+- Every note links to at least one other note or to its project `index.md`. An unlinked note is an orphan, and `knowledge-librarian` fixes orphans.
 - Every project `index.md` links to all of its notes.
 - When a note is superseded, link old to new and new to old.
 
@@ -97,7 +97,6 @@ Hand work to the agent whose job it is. Each lives in `.claude/agents/`. All age
 |---|---|---|
 | `legal-researcher` | Finding and summarising law, regulations, bar/regulator guidance and competitor examples, with citations | `30-resources/`, project notes (from `research.md`) |
 | `content-writer` | Drafting and editing website copy, page structure, meta descriptions, FAQs in plain English and on-brand | `10-projects/<project>/` (from `page-draft.md`) |
-| `librarian` | Earlier version of `knowledge-librarian`, kept for now. Prefer `knowledge-librarian`. | Anywhere in `brain/`, structure only |
 | `legal-compliance-reviewer` | Checking drafts before publishing for legal-advertising rules, required disclaimers, unsupported claims and accuracy | Review notes and the draft's `reviewed_by` field |
 
 Typical build pipeline (once building is approved): `product-analyst` → Aldred approves requirements → `product-engineer` → `quality-engineer` independent review → Aldred accepts → `knowledge-librarian` files the outcome.

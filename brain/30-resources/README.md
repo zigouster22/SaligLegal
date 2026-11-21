@@ -2,6 +2,7 @@
 
 Reference material, filed by topic. Resources are facts and sources, not work in progress.
 
+- `company/`: the company overview (who Salig Legal is, where it operates, which jurisdictions the product supports)
 - `legal-sources/`: statutes, regulations, bar/regulator guidance, case notes, each with a citation and the date it was checked
 - `practice-areas/`: background on each area of law the firm covers
 - `competitors/`: notes on other firms' sites, structure and messaging
