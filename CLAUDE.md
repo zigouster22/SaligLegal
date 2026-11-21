@@ -1,6 +1,22 @@
 # CLAUDE.md: operating rules for the Salig Legal workspace
 
-This repository holds the Salig Legal website and its second brain, a knowledge workspace in [`brain/`](brain/). These rules tell Claude how to capture, file, link and maintain notes, and when to hand work to a specialist agent.
+This repository holds the Salig Legal website and our shared second brain, which lives in [`brain/`](brain/). `brain/` is the only place project knowledge is kept; there is no separate knowledge folder. These rules tell Claude how to capture, file, link and maintain notes, how decisions are recorded, and when to hand work to a specialist agent.
+
+## 0. Roles and decision authority
+
+- **Aldred is the human Product Owner, Product Engineer and Quality Engineer for this project, with final decision authority.** Claude and every agent advise, draft and propose; Aldred decides.
+- Agents never approve their own work, never mark a decision `approved`, and never merge, publish or deploy without Aldred's explicit go-ahead.
+- Where agents disagree, or an agent's advice conflicts with these rules, record both views as a proposed decision (section 5a) and ask Aldred.
+- Current phase: workspace setup and discovery only. Do not start building the product (application code, site scaffolding, dependencies) until Aldred approves a decision to start.
+
+## 0a. Before you start any task
+
+Every agent, and Claude in the main session, must first:
+
+1. Read [`brain/README.md`](brain/README.md).
+2. Read `brain/20-areas/decisions/approved/` so work follows what Aldred has already decided, and skim `proposed/` so nothing is re-proposed.
+3. Search `brain/` (Grep/Glob) for notes on the task's topic and read the relevant ones, including the project `index.md` if the task belongs to a project.
+4. If notes conflict with each other or with an approved decision, stop and raise it rather than guessing.
 
 ## 1. Workspace map
 
@@ -9,10 +25,13 @@ brain/
   00-inbox/        capture first, file later
   10-projects/     goal + end date (one folder per project, each with index.md)
   20-areas/        ongoing responsibilities (brand voice, SEO, compliance, site ops)
+    decisions/
+      proposed/    decisions awaiting Aldred (anyone may add)
+      approved/    decisions Aldred has approved (only on Aldred's say-so)
   30-resources/    reference: legal-sources, practice-areas, competitors, style
   40-archive/      finished or superseded material, never deleted
-  _templates/      note.md, project.md, research.md, page-draft.md
-.claude/agents/    the four specialist agents (section 6)
+  _templates/      note.md, project.md, research.md, page-draft.md, decision.md
+.claude/agents/    the specialist agents (section 6)
 ```
 
 ## 2. Capture
@@ -51,18 +70,39 @@ Rules:
 - When a project ships, set its `index.md` to `status: done` and move the folder to `40-archive/10-projects/`.
 - Keep READMEs in each PARA folder accurate when the structure changes.
 
+## 5a. Decisions: proposed vs approved
+
+- Every decision that changes scope, design, technology, content policy or process is written as its own note from `brain/_templates/decision.md`.
+- New decisions go in `brain/20-areas/decisions/proposed/` with `status: proposed`. Any agent may propose one; it must state the options, a recommendation, and what is needed from Aldred.
+- A decision moves to `brain/20-areas/decisions/approved/` (with `git mv`), and its status becomes `approved` with `approved_by: Aldred` and the date, **only when Aldred has explicitly approved it** in conversation or in writing. Record where the approval was given.
+- Rejected or replaced decisions get `status: rejected` or `status: superseded` and move to `brain/40-archive/20-areas/decisions/`, linked to any replacement.
+- Never describe a proposed decision as agreed, and never act on one as if it were approved.
+
 ## 6. Specialist agents
 
-Hand work to the agent whose job it is. Each lives in `.claude/agents/`.
+Hand work to the agent whose job it is. Each lives in `.claude/agents/`. All agents follow sections 0 and 0a first.
+
+### Product delivery agents
+
+| Agent | Use it for | Writes to | Must not |
+|---|---|---|---|
+| `product-analyst` | Turning goals into problem statements, user needs, requirements, acceptance criteria and proposed decisions | `brain/10-projects/`, `brain/20-areas/decisions/proposed/` | Write application code or approve decisions |
+| `product-engineer` | Technical design and, once Aldred approves building, implementing changes against approved requirements | Application code (after approval), design notes in `brain/` | Start building before an approved decision; mark its own work verified |
+| `quality-engineer` | Independently reviewing and testing implementation against acceptance criteria and reporting evidence | Nothing: it returns a report, which `knowledge-librarian` files | Change application code, tests or config, or "fix" what it finds |
+| `knowledge-librarian` | Keeping `brain/` organised: triage, filing, linking, indexes, filing agent reports, and moving decisions only as Aldred directs | Anywhere in `brain/`, structure only | Rewrite note substance or approve decisions |
+
+### Website content agents
 
 | Agent | Use it for | Writes to |
 |---|---|---|
 | `legal-researcher` | Finding and summarising law, regulations, bar/regulator guidance and competitor examples, with citations | `30-resources/`, project notes (from `research.md`) |
 | `content-writer` | Drafting and editing website copy, page structure, meta descriptions, FAQs in plain English and on-brand | `10-projects/<project>/` (from `page-draft.md`) |
-| `librarian` | Inbox triage, filing, linking, fixing orphans, archiving, keeping indexes and READMEs current | Anywhere in `brain/`, structure only |
+| `librarian` | Earlier version of `knowledge-librarian`, kept for now. Prefer `knowledge-librarian`. | Anywhere in `brain/`, structure only |
 | `legal-compliance-reviewer` | Checking drafts before publishing for legal-advertising rules, required disclaimers, unsupported claims and accuracy | Review notes and the draft's `reviewed_by` field |
 
-Typical page pipeline: `legal-researcher` → `content-writer` → `legal-compliance-reviewer` → publish → `librarian` files and links the result.
+Typical build pipeline (once building is approved): `product-analyst` → Aldred approves requirements → `product-engineer` → `quality-engineer` independent review → Aldred accepts → `knowledge-librarian` files the outcome.
+
+Typical page pipeline: `legal-researcher` → `content-writer` → `legal-compliance-reviewer` → Aldred and a qualified lawyer sign off → publish → `knowledge-librarian` files and links the result.
 
 ## 7. Legal content rules
 
@@ -73,7 +113,7 @@ Typical page pipeline: `legal-researcher` → `content-writer` → `legal-compli
 
 ## 8. Confidentiality
 
-- Never store client names, matter details, personal data or privileged communications anywhere in this repository. It is for website and knowledge work only.
+- Never store client names, matter details, personal data or privileged communications anywhere in this repository. It is for website work and the second brain only.
 - If the user pastes something that looks confidential, do not save it. Ask, or save an anonymised version.
 - No secrets, API keys or credentials in notes.
 
