@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import PackageCard from '../../components/PackageCard.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+import { teams, filters } from '../../data/teams';
+import { site } from '../../data/site';
+---
+<Base title="Team packages" description="Seven remote legal support team configurations, from 2 to 6 people and 320 to 960 hours of reserved monthly capacity.">
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">A team that fits the work</div>
+      <h1>Start with your workload. Then choose your team.</h1>
+      <p>Seven configurations of administrative and casework support. Pricing and scope are discussed during your consultation.</p>
+    </div>
+  </div>
+  <section class="packages">
+    <div class="wrap">
+      <div class="tabs" role="group" aria-label="Filter teams by workload" hidden>
+        {filters.map((f, i) => <button type="button" class="tab" aria-pressed={i === 0 ? 'true' : 'false'} data-filter={f.id}>{f.label}</button>)}
+      </div>
+      <p id="package-status" class="sr-only" role="status" aria-atomic="true"></p>
+      <h2 class="sr-only">Team configurations</h2>
+      <div class="package-grid all" id="package-grid">
+        {teams.map((t) => <PackageCard team={t} />)}
+      </div>
+      <p class="capacity">Each team member represents {site.hoursPerMember} hours of reserved monthly capacity. Working hours, availability, holidays, and unused-capacity terms are agreed in your proposal.</p>
+      <div class="comparison" style="padding-top:24px">
+        <h2 class="h3" style="margin-bottom:8px">Compare all seven configurations</h2>
+        <ComparisonTable />
+      </div>
+    </div>
+  </section>
+  <script>
+    const tabs = document.querySelector<HTMLElement>('.tabs');
+    const cards = [...document.querySelectorAll<HTMLElement>('#package-grid .package')];
+    const status = document.getElementById('package-status')!;
+    if (tabs) {
+      tabs.hidden = false;
+      tabs.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((b) =>
+        b.addEventListener('click', () => {
+          tabs.querySelectorAll('[data-filter]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          const f = b.dataset.filter!;
+          let shown = 0;
+          for (const c of cards) {
+            const show = f === 'all' || (c.dataset.groups || '').split(' ').includes(f);
+            c.hidden = !show;
+            if (show) shown++;
+          }
+          status.textContent = `Showing ${shown} teams for ${b.textContent}.`;
+        }),
+      );
+    }
+  </script>
+</Base>

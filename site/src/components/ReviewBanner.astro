@@ -1,0 +1,8 @@
+---
+/** Page-level marker: copy on this page needs drafting or legal review before launch. Blocks `check:launch`. */
+interface Props { note: string }
+const { note } = Astro.props;
+---
+<div class="launch-banner" data-launch-blocker role="note" aria-label="Draft notice">
+  <div class="wrap"><p><strong>Draft for review.</strong> {note}</p></div>
+</div>

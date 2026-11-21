@@ -1,0 +1,7 @@
+---
+/** Renders a confirmed fact, or a To-be-confirmed marker when the value is still null. */
+import Tbc from './Tbc.astro';
+interface Props { value: string | null | undefined; what: string }
+const { value, what } = Astro.props;
+---
+{value ? <Fragment>{value}</Fragment> : <Tbc what={what} />}

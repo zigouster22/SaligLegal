@@ -1,0 +1,22 @@
+{
+  "name": "salig-legal-site",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Salig Legal Operations website: remote legal support teams for California law firms.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test:a11y": "node scripts/a11y.mjs",
+    "check:launch": "node scripts/check-launch.mjs"
+  },
+  "dependencies": {
+    "@fontsource/bricolage-grotesque": "5.3.0",
+    "astro": "5.18.2"
+  },
+  "devDependencies": {
+    "axe-core": "4.14.1",
+    "playwright": "1.63.0"
+  }
+}

@@ -43,3 +43,6 @@ Plan doc: https://claude.ai/artifact/42AUepyYnKQw32SmxdWR6z
 - Security and confidentiality measures (NDAs, device and access controls, data location)
 - Legal entity names and registration details
 - Contact details: email, phone, address, and which inbox receives inquiries
+
+## Build status (2026-11-21)
+The site is built in `site/` (Astro). `npm run check:launch` lists everything still blocking launch; on 2026-11-21 that was 30 items: the facts above, draft banners on About, Services, Security, Privacy and Terms (lawyer review), no domain (`SITE_URL`) and no form service (`PUBLIC_FORM_ENDPOINT`). Not yet done: `sitemap.xml` (needs the domain), the `quality-engineer` review, and screen-reader testing.

@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import ReviewBanner from '../../components/ReviewBanner.astro';
+import Fact from '../../components/Fact.astro';
+import Tbc from '../../components/Tbc.astro';
+import { site } from '../../data/site';
+---
+<Base title="Privacy notice" description={`How ${site.brand} handles information submitted through this website.`}>
+  <ReviewBanner slot="banner" note="Outline only. The notice must be completed and approved by a qualified lawyer, including whether CCPA/CPRA applies (PRIV-1 to PRIV-4)." />
+  <div class="page-hero"><div class="wrap"><div class="eyebrow">Legal</div><h1>Privacy notice</h1><p>Effective: <Fact value={site.privacyEffectiveDate} what="effective date" /></p></div></div>
+  <section>
+    <div class="wrap prose">
+      <h2>Who we are</h2>
+      <p>This website is operated by <Fact value={site.usEntityName} what="controlling entity" />. Contact us about privacy at <Fact value={site.contactEmail} what="privacy contact email" />.</p>
+      <h2>What we collect</h2>
+      <p>When you send a consultation request we collect your name, work email, law firm name, and the optional and free-text details you choose to give. Please do not send client names, confidential case details or case documents.</p>
+      <p>Cookies and analytics: this website sets no cookies and uses no analytics. <Tbc what="confirm, or describe any analytics chosen" /></p>
+      <h2>Why we use it</h2>
+      <p>To respond to your inquiry and discuss a possible engagement with your firm.</p>
+      <h2>Who receives it</h2>
+      <p><Tbc what="hosting and form-delivery providers, once chosen" /></p>
+      <h2>How long we keep it</h2>
+      <p><Tbc what="retention period" /></p>
+      <h2>Your choices and rights</h2>
+      <p><Tbc what="rights and how to exercise them, per the lawyer’s advice on applicable law" /></p>
+    </div>
+  </section>
+</Base>

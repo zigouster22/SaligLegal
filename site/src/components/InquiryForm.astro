@@ -1,0 +1,152 @@
+---
+/**
+ * Consultation inquiry form (requirements CON-1 to CON-7).
+ * Delivery: set PUBLIC_FORM_ENDPOINT at build time to a form service URL that accepts a POST
+ * (the hosting and form-delivery decision is still open). Without it, the form runs in preview
+ * mode: it validates but sends nothing, and shows a launch-blocking notice.
+ */
+import { teams, people, teamSlug } from '../data/teams';
+import { site } from '../data/site';
+import Tbc from './Tbc.astro';
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined;
+---
+<form class="form" id="inquiry" tabindex="-1" aria-label="Consultation request" method="post"
+  action={endpoint || undefined} data-endpoint={endpoint || ''} data-contact-email={site.contactEmail || ''}>
+  {!endpoint && (
+    <p class="callout" data-launch-blocker>
+      Inquiry delivery is not connected yet, so this form checks your entries but does not send them. <Tbc what="form delivery service" />
+    </p>
+  )}
+  <p class="required-note">Fields marked “required” must be completed.</p>
+  <div class="error-summary" id="form-errors" tabindex="-1" role="group" aria-labelledby="error-title" aria-describedby="error-count" hidden>
+    <h3 id="error-title">Check your request</h3>
+    <p id="error-count"></p>
+    <ul id="error-list" role="list"></ul>
+  </div>
+  <div class="form-grid">
+    <div class="field">
+      <label for="full-name">Full name <span class="required">(required)</span></label>
+      <input id="full-name" name="fullName" autocomplete="name" required maxlength="120" aria-describedby="full-name-error" />
+      <p class="field-error" id="full-name-error" hidden></p>
+    </div>
+    <div class="field">
+      <label for="work-email">Work email <span class="required">(required)</span></label>
+      <input id="work-email" name="email" autocomplete="email" type="email" required maxlength="200" aria-describedby="work-email-error" />
+      <p class="field-error" id="work-email-error" hidden></p>
+    </div>
+    <div class="field full">
+      <label for="firm-name">Law firm name <span class="required">(required)</span></label>
+      <input id="firm-name" name="firm" autocomplete="organization" required maxlength="200" aria-describedby="firm-name-error" />
+      <p class="field-error" id="firm-name-error" hidden></p>
+    </div>
+    <div class="field full">
+      <label for="team-choice">Team you’re interested in <span class="required">(optional)</span></label>
+      <select id="team-choice" name="team">
+        <option value="">Help me choose</option>
+        {teams.map((t) => <option value={teamSlug(t)}>{`${t.name}: ${people(t)} people · ${t.admin} admin + ${t.casework} casework`}</option>)}
+      </select>
+    </div>
+    <div class="field full">
+      <label for="start-date">Anticipated start <span class="required">(optional)</span></label>
+      <input id="start-date" name="start" maxlength="100" placeholder="For example, next month" />
+    </div>
+    <div class="field full">
+      <label for="support-needs">What support would help? <span class="required">(required)</span></label>
+      <p class="form-hint" id="form-hint">Please describe tasks and workload in general terms. Do not include client names, confidential case details, or case documents.</p>
+      <textarea id="support-needs" name="needs" required maxlength="2000" placeholder="A general description of tasks and workload" aria-describedby="form-hint support-needs-error"></textarea>
+      <p class="field-error" id="support-needs-error" hidden></p>
+    </div>
+    <div class="honeypot" aria-hidden="true">
+      <label for="website">Leave this field empty</label>
+      <input id="website" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+  </div>
+  <p class="form-hint" id="privacy-hint">We use these details only to respond to your inquiry. See our <a href="/privacy/">privacy notice</a>.</p>
+  <button class="button dark" type="submit">Send consultation request</button>
+  <p id="form-status" role="status" aria-atomic="true"></p>
+</form>
+
+<script>
+  const form = document.getElementById('inquiry') as HTMLFormElement | null;
+  if (form) {
+    form.noValidate = true; // custom accessible validation replaces the browser's when JavaScript runs
+    const endpoint = form.dataset.endpoint;
+    const contactEmail = form.dataset.contactEmail;
+    const summary = document.getElementById('form-errors')!;
+    const list = document.getElementById('error-list')!;
+    const status = document.getElementById('form-status')!;
+    const submit = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+    const fields = [
+      { id: 'full-name', empty: 'Enter your full name.' },
+      { id: 'work-email', empty: 'Enter your work email.' },
+      { id: 'firm-name', empty: 'Enter your law firm name.' },
+      { id: 'support-needs', empty: 'Describe the support your firm needs.' },
+    ];
+    let started = false;
+
+    // Preselect a team from ?team=<slug> (links on the packages pages).
+    const wanted = new URLSearchParams(location.search).get('team');
+    const select = document.getElementById('team-choice') as HTMLSelectElement;
+    if (wanted && [...select.options].some((o) => o.value === wanted)) {
+      select.value = wanted;
+      status.textContent = `Selected ${select.selectedOptions[0].text.split(':')[0]}. Complete the fields below to send your request.`;
+    }
+
+    const messageFor = (id: string, empty: string) => {
+      const input = document.getElementById(id) as HTMLInputElement;
+      if (!input.value.trim()) return empty;
+      if (input.type === 'email' && input.validity.typeMismatch) return 'Enter a valid email address, such as name@firm.com.';
+      return '';
+    };
+    const validate = () => {
+      const errors: { id: string; message: string }[] = [];
+      for (const f of fields) {
+        const input = document.getElementById(f.id)!;
+        const error = document.getElementById(`${f.id}-error`)!;
+        const message = messageFor(f.id, f.empty);
+        error.textContent = message;
+        error.hidden = !message;
+        if (message) { input.setAttribute('aria-invalid', 'true'); errors.push({ id: f.id, message }); }
+        else input.removeAttribute('aria-invalid');
+      }
+      summary.hidden = errors.length === 0;
+      document.getElementById('error-count')!.textContent = `${errors.length} ${errors.length === 1 ? 'field needs' : 'fields need'} your attention.`;
+      list.replaceChildren();
+      for (const e of errors) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${e.id}`;
+        a.textContent = e.message;
+        a.addEventListener('click', (ev) => { ev.preventDefault(); document.getElementById(e.id)!.focus(); });
+        li.append(a);
+        list.append(li);
+      }
+      return errors;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      started = true;
+      status.textContent = '';
+      if (validate().length) { summary.focus(); return; }
+      if (!endpoint) {
+        status.textContent = 'Your entries are complete, but inquiry delivery is not connected yet, so nothing was sent.';
+        return;
+      }
+      submit.disabled = true;
+      status.textContent = 'Sending your request…';
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        status.textContent = 'Thank you. Your request has been sent, and we will reply by email.';
+      } catch {
+        const alt = contactEmail ? ` You can also email us at ${contactEmail}.` : '';
+        status.textContent = `Sorry, your request could not be sent. Your entries are still here, so please try again.${alt}`;
+      } finally {
+        submit.disabled = false;
+      }
+    });
+    form.addEventListener('input', () => { if (started) validate(); });
+  }
+</script>
