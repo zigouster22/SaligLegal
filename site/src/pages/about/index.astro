@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import ReviewBanner from '../../components/ReviewBanner.astro';
+import Fact from '../../components/Fact.astro';
+import { site } from '../../data/site';
+---
+<Base title="About" description="Who we are: remote legal administrative and attorney-directed casework teams supporting California law firms.">
+  <ReviewBanner slot="banner" note="New copy: needs content review, confirmed entity names, and lawyer sign-off before launch." />
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">About us</div>
+      <h1>A practical extension of your firm.</h1>
+      <p>{site.brand} brings together {site.entitiesSummary} to provide remote administrative and casework support for law firms.</p>
+    </div>
+  </div>
+  <section>
+    <div class="wrap prose">
+      <h2>Who we are</h2>
+      <p>Our support teams work remotely from the Philippines for law firms in California. Each team is dedicated to one firm and works within that firm’s systems, priorities and review process.</p>
+      <ul role="list">
+        <li>U.S. company: <Fact value={site.usEntityName} what="U.S. LLC legal name and state of registration" /></li>
+        <li>Philippine company: <Fact value={site.phEntityName} what="Philippine corporation legal name" /></li>
+      </ul>
+      <h2>How we work with your firm</h2>
+      <p>Your firm assigns the work and keeps responsibility for legal advice, strategy and final approval. Our Legal Administrative Assistants keep daily coordination moving, and our Legal Support Specialists help with casework your supervising attorney directs and reviews.</p>
+      <p>Before work begins, we agree the role mix, working hours, systems, access and review expectations with you, and set them out in a written proposal.</p>
+      <h2>What we are not</h2>
+      <p>We are not a law firm. We do not give legal advice and do not provide legal services to the public.</p>
+      <p><a href="/services/">See our support roles</a> or <a href="/contact/">request a consultation</a>.</p>
+    </div>
+  </section>
+</Base>

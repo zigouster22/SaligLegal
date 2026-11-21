@@ -1,0 +1,6 @@
+---
+/** Visible marker for a fact Aldred has not confirmed yet. `npm run check:launch` fails while any remain. */
+interface Props { what: string }
+const { what } = Astro.props;
+---
+<span class="tbc" data-launch-blocker>To be confirmed: {what}</span>

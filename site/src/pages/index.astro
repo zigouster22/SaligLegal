@@ -1,0 +1,148 @@
+---
+import Base from '../layouts/Base.astro';
+import PackageCard from '../components/PackageCard.astro';
+import { teams } from '../data/teams';
+import { site } from '../data/site';
+const starting = teams.filter((t) => t.groups.includes('start'));
+---
+<Base title="Home" description="Dedicated remote legal administrative and attorney-directed casework support for California law firms. Choose a team of 2 to 6 professionals.">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Dedicated remote support for law firms</div>
+        <h1>More capacity.<br />More room for<br /><em>your legal work.</em></h1>
+        <p class="hero-copy">Legal administration and attorney-directed casework, supported by a dedicated team. Choose the right balance of people for your firm’s everyday workload.</p>
+        <div class="actions">
+          <a class="button" href="/contact/">Request a consultation</a>
+          <a class="button outline" href="/team-packages/">Compare teams</a>
+        </div>
+        <p class="small-note">Teams of 2–6 professionals · Defined monthly capacity</p>
+      </div>
+      <aside class="team-panel" aria-label="Example two-person team">
+        <div class="panel-label">Your firm. A supported workflow.</div>
+        <h2>Two complementary roles.<br />One coordinated team.</h2>
+        <div class="role"><div class="role-num">01</div><div><strong>Legal Administrative Assistant</strong><span>Scheduling, files, and daily coordination</span></div></div>
+        <div class="role"><div class="role-num">02</div><div><strong>Legal Support Specialist</strong><span>Research, drafting, and case preparation</span></div></div>
+        <div class="panel-footer"><span>Example: 2-person team</span><strong>{2 * site.hoursPerMember} hrs / month</strong></div>
+      </aside>
+    </div>
+    <div class="wrap hero-strip">
+      <div><span>01 /</span> Clearly defined responsibilities</div>
+      <div><span>02 /</span> Dedicated monthly team capacity</div>
+      <div><span>03 /</span> Your attorney retains oversight</div>
+    </div>
+  </div>
+
+  <section id="about" tabindex="-1">
+    <div class="wrap intro">
+      <div>
+        <div class="eyebrow">A practical extension of your firm</div>
+        <h2>Delegate the work.<br />Keep the direction.</h2>
+      </div>
+      <div>
+        <p>{site.brand} brings together {site.entitiesSummary} to provide remote administrative and casework support for law firms.</p>
+        <p style="margin-top:18px">Your firm assigns the work and retains responsibility for legal advice, strategy, and final approval. Our two support roles give you a clear starting point for delegation.</p>
+        <a class="text-link" href="/about/">More about us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services" tabindex="-1">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">The right help, in the right place</div>
+          <h2>Two roles. Clear responsibilities.</h2>
+        </div>
+        <p>Build a team around the work you need to delegate, from daily coordination to preparation for your next matter.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service">
+          <div class="index">01 / ADMINISTRATIVE SUPPORT</div>
+          <h3>Keep the daily work moving.</h3>
+          <p>A Legal Administrative Assistant supports the coordination and recordkeeping behind your practice.</p>
+          <ul role="list">
+            <li>Email, calendars, and consultation scheduling</li>
+            <li>Matter files and case-management records</li>
+            <li>Records requests and billing administration</li>
+          </ul>
+          <a class="text-link" href="/services/#administrative-support">Administrative support in detail</a>
+        </article>
+        <article class="service">
+          <div class="index">02 / ATTORNEY-DIRECTED CASEWORK</div>
+          <h3>Make room for deeper casework.</h3>
+          <p>A Legal Support Specialist assists with substantive tasks assigned by your supervising attorney.</p>
+          <ul role="list">
+            <li>Delegated research, summaries, and chronologies</li>
+            <li>Drafting and document organization for review</li>
+            <li>Discovery, hearing, and trial preparation</li>
+          </ul>
+          <a class="text-link" href="/services/#casework-support">Casework support in detail</a>
+        </article>
+      </div>
+      <p class="oversight"><strong>Attorney oversight remains with your firm.</strong> Your attorney directs substantive work, reviews the work product, and provides final approval.</p>
+    </div>
+  </section>
+
+  <section id="process" tabindex="-1">
+    <div class="wrap">
+      <div class="eyebrow">From workload to working relationship</div>
+      <h2>A clear start. A shared way of working.</h2>
+      <div class="steps">
+        <article><div class="step-num">01</div><h3>Discuss the workload</h3><p>Identify recurring tasks, bottlenecks, and where your firm needs additional capacity.</p></article>
+        <article><div class="step-num">02</div><h3>Define your team</h3><p>Agree on the role mix, responsibilities, reserved capacity, and engagement scope.</p></article>
+        <article><div class="step-num">03</div><h3>Set up the workflow</h3><p>Establish approved tools, access, working hours, and attorney review expectations.</p></article>
+        <article><div class="step-num">04</div><h3>Review and refine</h3><p>Set a communication rhythm to review priorities, feedback, and ongoing support needs.</p></article>
+      </div>
+      <p class="draft-note">Every engagement’s arrangements are set out in your written proposal and agreement.</p>
+    </div>
+  </section>
+
+  <section class="packages" id="packages" tabindex="-1">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">A team that fits the work</div>
+          <h2>Start with your workload.<br />Then choose your team.</h2>
+        </div>
+        <p>Three common starting points. Pricing and scope are discussed during your consultation.</p>
+      </div>
+      <div class="package-grid">
+        {starting.map((t) => <PackageCard team={t} />)}
+      </div>
+      <p class="capacity">Each team member represents {site.hoursPerMember} hours of reserved monthly capacity. Working hours, availability, holidays, and unused-capacity terms are agreed in your proposal.</p>
+      <a class="text-link" href="/team-packages/">Compare all seven team configurations</a>
+    </div>
+  </section>
+
+  <section id="faqs" tabindex="-1">
+    <div class="wrap faq-grid">
+      <div>
+        <div class="eyebrow">Before we begin</div>
+        <h2>Good questions.<br />Clear expectations.</h2>
+        <p class="intro-text">Understand the scope of support before deciding which team is right for your firm.</p>
+        <a class="text-link" href="/contact/">Discuss your firm’s needs</a>
+      </div>
+      <div>
+        <details><summary>Who directs and reviews the legal work?</summary><p>Your firm’s supervising attorney assigns substantive work, reviews the resulting work product, and gives final approval. {site.shortBrand} does not provide legal advice or make strategy or settlement decisions.</p></details>
+        <details><summary>What does reserved monthly capacity mean?</summary><p>Each team member represents {site.hoursPerMember} hours per month, for team totals of {2 * site.hoursPerMember}–{6 * site.hoursPerMember} hours. Exact schedules, availability, exclusions, and treatment of unused capacity are set out in your proposal.</p></details>
+        <details><summary>How do we choose a team and obtain pricing?</summary><p>Start with your balance of administrative and casework needs. A consultation can help define the responsibilities to delegate and the appropriate role mix. Package scope and pricing are discussed as part of that process.</p></details>
+        <details><summary>What should we clarify before onboarding?</summary><p>Working hours and time zones, approved systems, access permissions, confidentiality arrangements, review responsibilities, communication, and escalation. We agree these with you before work begins. See <a class="inline-link" href="/security/">security and confidentiality</a>.</p></details>
+        <details><summary>What should we include in an inquiry?</summary><p>A general description of your firm, the tasks you need help with, and your anticipated start date. Do not include client names, confidential case details, or case documents.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" tabindex="-1">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="eyebrow">Let’s find your fit</div>
+        <h2>Tell us where your firm needs support.</h2>
+      </div>
+      <div>
+        <p class="contact-copy">Start with a general overview of your workload. You don’t need to have a package in mind.</p>
+        <div class="actions"><a class="button dark" href="/contact/">Request a consultation</a></div>
+      </div>
+    </div>
+  </section>
+</Base>

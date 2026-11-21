@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import ReviewBanner from '../../components/ReviewBanner.astro';
+import Fact from '../../components/Fact.astro';
+import Tbc from '../../components/Tbc.astro';
+import { site } from '../../data/site';
+---
+<Base title="Terms of use" description={`Terms for using the ${site.brand} website.`}>
+  <ReviewBanner slot="banner" note="Outline only. The terms must be completed and approved by a qualified lawyer before launch (TERMS-1, TERMS-2)." />
+  <div class="page-hero"><div class="wrap"><div class="eyebrow">Legal</div><h1>Terms of use</h1><p>Effective: <Fact value={site.termsEffectiveDate} what="effective date" /></p></div></div>
+  <section>
+    <div class="wrap prose">
+      <h2>General business information</h2>
+      <p>This website describes the support services {site.brand} offers to law firms. It is general business information and is not legal advice.</p>
+      <h2>No lawyer-client relationship</h2>
+      <p>{site.brand} is not a law firm. Using this website or sending us an inquiry does not create a lawyer-client relationship with anyone.</p>
+      <h2>Service terms</h2>
+      <p>Any services are provided only under a signed written agreement with your firm. Nothing on this website is an offer that can be accepted.</p>
+      <h2>Website content</h2>
+      <p><Tbc what="ownership of content and permitted use" /></p>
+      <h2>Governing law</h2>
+      <p><Tbc what="governing law and venue (lawyer)" /></p>
+    </div>
+  </section>
+</Base>

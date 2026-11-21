@@ -1,0 +1,38 @@
+---
+import Base from '../../layouts/Base.astro';
+import ReviewBanner from '../../components/ReviewBanner.astro';
+import Tbc from '../../components/Tbc.astro';
+import { site } from '../../data/site';
+---
+<Base title="Security and confidentiality" description="How remote legal support teams work within your firm's systems, access controls and supervision.">
+  <ReviewBanner slot="banner" note="List only measures Aldred confirms are in place (SEC-1); legal review of supervision and confidentiality wording needed (COMP-6)." />
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">Security and confidentiality</div>
+      <h1>Your systems. Your rules. Your oversight.</h1>
+      <p>Your firm decides which systems and information our team can access, and keeps responsibility for supervising the work.</p>
+    </div>
+  </div>
+  <section>
+    <div class="wrap prose">
+      <h2>Your firm stays in control</h2>
+      <ul role="list">
+        <li>Your firm chooses the systems, accounts and permissions the team uses, and can change or remove access at any time.</li>
+        <li>Your supervising attorney directs substantive work and reviews it before it is relied on.</li>
+        <li>Working practices, communication and escalation routes are agreed in writing before work begins.</li>
+      </ul>
+      <h2>Our safeguards</h2>
+      <p><Tbc what="the security and confidentiality measures actually in place (for example confidentiality agreements, device and access controls, training)" /></p>
+      <h2>Questions to discuss with us</h2>
+      <p>Every firm’s obligations and systems are different. In your consultation we can talk through:</p>
+      <ul role="list">
+        <li>Where and how the team works, and which devices they use</li>
+        <li>How access is granted, reviewed and removed</li>
+        <li>Confidentiality commitments from {site.brand} and each team member</li>
+        <li>How work is assigned, reviewed and approved by your attorneys</li>
+      </ul>
+      <p>Your firm remains responsible for its own professional obligations. We do not claim that using our service makes a firm compliant with any rule.</p>
+      <p><a href="/contact/">Request a consultation</a></p>
+    </div>
+  </section>
+</Base>

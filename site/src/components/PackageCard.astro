@@ -1,0 +1,19 @@
+---
+import { type Team, people, hours, teamSlug } from '../data/teams';
+interface Props { team: Team; headingLevel?: 'h2' | 'h3' }
+const { team, headingLevel = 'h3' } = Astro.props;
+const H = headingLevel;
+const id = `package-${teamSlug(team)}`;
+---
+<article class="package" aria-labelledby={id} data-groups={team.groups.join(' ')}>
+  <div class="tag">{team.tag}</div>
+  <H id={id}>{people(team)}-person team</H>
+  <div class="package-name">{team.name}</div>
+  <div class="mix">
+    <div><span>Administrative assistants</span><strong>{team.admin}</strong></div>
+    <div><span>Support specialists</span><strong>{team.casework}</strong></div>
+    <div><span>Monthly capacity</span><strong>{hours(team)} hrs</strong></div>
+  </div>
+  <p>{team.desc}</p>
+  <a class="button outline" href={`/contact/?team=${teamSlug(team)}#inquiry`} aria-label={`Discuss this team: ${team.name}`}>Discuss this team</a>
+</article>

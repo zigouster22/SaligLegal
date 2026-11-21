@@ -1,0 +1,20 @@
+---
+import { teams, people, hours, teamSlug } from '../data/teams';
+---
+<p id="table-help" class="table-help">On a narrow screen, focus this table and use the left and right arrow keys to scroll.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="All team configurations" aria-describedby="table-help">
+  <table>
+    <caption class="sr-only">Compare seven team configurations by administrative roles, casework roles, and monthly capacity.</caption>
+    <thead>
+      <tr><th scope="col">Team configuration</th><th scope="col">Admin</th><th scope="col">Casework</th><th scope="col">People</th><th scope="col">Hours / month</th><th scope="col">Next step</th></tr>
+    </thead>
+    <tbody>
+      {teams.map((t) => (
+        <tr>
+          <th scope="row">{t.name}</th><td>{t.admin}</td><td>{t.casework}</td><td>{people(t)}</td><td>{hours(t)}</td>
+          <td><a class="table-link" href={`/contact/?team=${teamSlug(t)}#inquiry`} aria-label={`Discuss ${t.name}`}>Discuss</a></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

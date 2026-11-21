@@ -1,0 +1,66 @@
+---
+import Base from '../../layouts/Base.astro';
+import ReviewBanner from '../../components/ReviewBanner.astro';
+import { site } from '../../data/site';
+---
+<Base title="Our support" description="Two remote support roles for California law firms: Legal Administrative Assistants and Legal Support Specialists working under your supervising attorney.">
+  <ReviewBanner slot="banner" note="Role titles and task descriptions need legal research and lawyer sign-off before launch (requirements COMP-4, COMP-5)." />
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">Our support</div>
+      <h1>Two roles. Clear responsibilities.</h1>
+      <p>Build a team around the work you need to delegate, from daily coordination to preparation for your next matter. Your supervising attorney directs and approves all substantive work.</p>
+      <div class="actions"><a class="button" href="/contact/">Request a consultation</a><a class="button outline" href="/team-packages/">Compare teams</a></div>
+    </div>
+  </div>
+  <section class="services">
+    <div class="wrap">
+      <div class="service-grid">
+        <article class="service service-anchor" id="administrative-support" tabindex="-1">
+          <div class="index">01 / ADMINISTRATIVE SUPPORT</div>
+          <h2 class="h3">Legal Administrative Assistant</h2>
+          <p>Keeps the daily work moving by supporting the coordination and recordkeeping behind your practice.</p>
+          <ul role="list">
+            <li>Email, calendars, and consultation scheduling</li>
+            <li>Matter files and case-management records</li>
+            <li>Records requests and billing administration</li>
+            <li>Routine correspondence formatting</li>
+            <li>Basic attorney-approved forms</li>
+            <li>Time-entry cleanup</li>
+            <li>Court or agency filing logistics</li>
+          </ul>
+        </article>
+        <article class="service service-anchor" id="casework-support" tabindex="-1">
+          <div class="index">02 / ATTORNEY-DIRECTED CASEWORK</div>
+          <h2 class="h3">Legal Support Specialist</h2>
+          <p>Makes room for deeper casework by assisting with substantive tasks assigned, directed and reviewed by your supervising attorney.</p>
+          <ul role="list">
+            <li>Delegated research, summaries, and chronologies</li>
+            <li>Drafting and document organization for attorney review</li>
+            <li>Discovery, hearing, and trial preparation</li>
+            <li>Fact development and exhibit organization</li>
+            <li>Routine pleadings and correspondence prepared for attorney review</li>
+            <li>Subpoenas and assigned filing preparation, as directed</li>
+          </ul>
+        </article>
+      </div>
+      <p class="oversight"><strong>Attorney oversight remains with your firm.</strong> Your attorney directs substantive work, reviews the work product, and provides final approval.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap two-col">
+      <div>
+        <div class="eyebrow">Clear boundaries</div>
+        <h2>What we don’t do</h2>
+        <p class="intro-text" style="margin-top:20px;color:var(--muted)">{site.brand} supports your firm’s lawyers. It is not a law firm and does not act for your clients.</p>
+      </div>
+      <ul role="list" class="dont">
+        <li>Give legal advice to your firm, your clients, or anyone else</li>
+        <li>Make strategy, settlement, or filing decisions</li>
+        <li>Sign or file documents on our own authority, or appear in court</li>
+        <li>Work directly for members of the public</li>
+        <li>Act without direction from your supervising attorney</li>
+      </ul>
+    </div>
+  </section>
+</Base>

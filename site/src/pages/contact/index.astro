@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import InquiryForm from '../../components/InquiryForm.astro';
+import Fact from '../../components/Fact.astro';
+import { site } from '../../data/site';
+---
+<Base title="Contact" description="Request a consultation about remote legal administrative and casework support for your California law firm.">
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow">Let’s find your fit</div>
+      <h1>Tell us where your firm needs support.</h1>
+      <p>Start with a general overview of your workload. You don’t need to have a package in mind.</p>
+    </div>
+  </div>
+  <section class="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="next" style="margin-top:0;padding-top:0;border-top:0">
+          <h2 class="h3">A useful first conversation</h2>
+          <p>Discuss the tasks you want to delegate, compare team options, and identify the details to include in a proposal.</p>
+        </div>
+        <div class="next">
+          <h2 class="h3">Other ways to reach us</h2>
+          <p>Email: {site.contactEmail ? <a class="inline-link" href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> : <Fact value={null} what="business email" />}</p>
+          <p>Location: <Fact value={site.businessLocation} what="business location" /></p>
+        </div>
+      </div>
+      <InquiryForm />
+    </div>
+  </section>
+</Base>
